@@ -1,0 +1,50 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{!-- <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookDetails/title> --}}
+</head>
+
+<body>
+         <table border="2px" style="border-collapse: collapse;">
+                <tr>
+                    <th colspan="8">BookDetails</th>
+                    <th colspan="2">bookId</th>
+                    
+                    <th colspan="2">title</th>
+                    <th colspan="2">author</th>
+                    <th colspan="2">description</th>
+                    <th colspan="2">published_date</th>
+                    <th colspan="2">publisher</th>
+                    <th colspan="2">pages</th>
+                    <th colspan="2">inStock</th
+                    {{!-- <th rowspan="8">BookDetails</th --}}
+                    
+
+                </tr>
+                
+            <tr>
+                    {{#each BookDetails as | book|}}  
+                     <td>{{book.bookId}}</td>
+                     <td>{{book.title}}</td>
+                     <td>{{book.author}}</td>
+                     <td>{{book.description}}</td>
+                     <td>{{book.published_date}}</td>
+                     <td>{{book.publisher}}</td>
+                     <td>{{book.pages}}</td>
+                     <td>{{book.inStock}}</td>
+
+                                   
+                    
+                    {{/each}}
+            </tr>
+
+        </table>
+    
+    {{!-- {{ <script type="module" src="../index.js"></script> }} --}}
+</body>
+</html>

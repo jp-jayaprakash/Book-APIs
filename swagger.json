@@ -1,0 +1,373 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Book API for Node js",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/"
+        }
+    ],
+    "paths": {
+        "/v1/getAllBook": {
+            "get": {
+                "tags": [
+                    "get"
+                ],
+                "summary": "fetch all the book from db",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "maximum no of book will be get in single Request",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "maximum no of book will be get in single Request",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "10"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "/application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": ""
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "*if send page and limit is string*\n",
+                        "content": {
+                            "/application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FailOps400"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/deleteBook/{bookId}": {
+            "patch": {
+                "tags": [
+                    "patch"
+                ],
+                "summary": "delete the book in db softly ",
+                "description": " ",
+                "parameters": [
+                    {
+                        "name": "bookId",
+                        "in": "path",
+                        "description": "this components will be delete the book in softly",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example":"7e90a231-9427-46b4-82e3-aad22259c6f4"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": ""
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "*if enter the invalid ID*\n",
+                        "content": {
+                            "/application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FailOps400"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/checkStock/{bookId}": {
+            "patch": {
+                "tags": [
+                    "patch"
+                ],
+                "summary": "check  the book in db  ",
+                "description": " ",
+                "parameters": [
+                    {
+                        "name": "bookId",
+                        "in": "path",
+                        "description": "this components will be available or not",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "7e90a231-9427-46b4-82e3-aad22259c6f4"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "inStock": {
+                                        "type": "string",
+                                        "example": "yes"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": ""
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "*if enter the invalid ID*\n",
+                        "content": {
+                            "/application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FailOps400"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/searchBookTitle": {
+            "get": {
+                "tags": [
+                    "get"
+                ],
+                "summary": "search the book for title and also set the limit",
+                "description": " ",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "this components will be search the book by title",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example":""
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "maximum no of book will be get in single Request",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "maximum no of book will be get in single Request",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "12"
+                        }
+                    }
+                    
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": ""
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "*if enter the invalid ID*\n",
+                        "content": {
+                            "/application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FailOps400"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/searchPublished_Year": {
+            "get": {
+                "tags": [
+                    "get"
+                ],
+                "summary": "search the book for year and also set the limit",
+                "description": " ",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "this components will be year the book by title",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example":""
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "maximum no of book will be get in single Request",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "maximum no of book will be get in single Request",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "12"
+                        }
+                    }
+                    
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": ""
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "*if enter the invalid ID*\n",
+                        "content": {
+                            "/application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FailOps400"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+    },
+    "components": {
+        "schemas": {
+            "recordCount": {
+                "description": "Successfull operation",
+                "properties": {
+                    "movie": {
+                        "type": "string",
+                        "example": ""
+                    },
+                    "code": {
+                        "type": "integer",
+                        "example": "200"
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Successfully"
+                    },
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "result": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "_id": {
+                                                "type": "string",
+                                                "example": ""
+                                            },
+                                            "count": {
+                                                "type": "integer",
+                                                "example": "10"
+                                            }
+                                        }
+                                    }
+                                },
+                                "recordsCount": {
+                                    "type": "integer",
+                                    "example": "10"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "FailOps400": {
+                "description": "The HTTP 404 Not Found response status code indicates that the server cannot find the requested resource.",
+                "properties": {
+                    "operationId": {
+                        "type": "string",
+                        "example": "4f1f427f-e7f9-4530-974d-9a2dc0ae59cd"
+                    },
+                    "code": {
+                        "type": "integer",
+                        "example": 1178
+                    },
+                    "data": {
+                        "type": "object",
+                        "example": null
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Invalid request, please check the request and try again, resource not found."
+                    }
+                }
+            }
+        }
+    }
+}
